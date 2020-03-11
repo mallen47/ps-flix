@@ -7,15 +7,15 @@
 	<%= f.date_field :released_on %>
 
 	<%= f.label :rating %>
-	<%= f.text_field :rating %>
+	<%= f.select :rating, Movie::RATINGS, prompt: "Pick one" %>
 
 	<%= f.label :description %>
 	<%= f.text_area :description, rows: 10 %>	
 	
 	<%= f.label :total_gross %>
-  <%= f.number_field :total_gross %>
+  	<%= f.number_field :total_gross %>
 
-  <%= f.label :director %>
+  	<%= f.label :director %>
 	<%= f.text_field :director %>
 
 	<%= f.label :duration %>
