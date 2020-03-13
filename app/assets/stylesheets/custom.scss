@@ -513,6 +513,7 @@ form:not([class="button_to"]) {
   &.alert {
 		@extend .alert-danger;
   }
+
 }
 
 // Errors
