@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
 	before_action :set_movie
+	# Todo restrict non-logged in users from writing, editing, or deleting reviews
 	
 	def index
 		@reviews = @movie.reviews

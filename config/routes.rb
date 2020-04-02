@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 	
 	resources :users
 	get "signup" => "users#new"
+	# Todo: create route to users#edit that hides user id
 
 end
