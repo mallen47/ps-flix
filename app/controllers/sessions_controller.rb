@@ -12,8 +12,7 @@ class SessionsController < ApplicationController
 		else
 			flash.now[:alert] = "Invalid user/password combination"
 			render :new
-		end
-		
+		end		
 	end
 
 	def destroy
