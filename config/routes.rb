@@ -1,6 +1,9 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do    
   
 	root "movies#index"
+
+	resources :favorites
+
 	resources :movies do 
 		resources :reviews
 	end

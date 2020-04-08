@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :reviews
-
+  has_many :favorites, dependent: :destroy
+  
   validates :name, presence: true
   validates :username, uniqueness: {case_sensitive: false}, 
             format: { with: /\w+/i }
