@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_secure_password
   has_many :reviews
   has_many :favorites, dependent: :destroy
+  has_many :favorite_movies, through: :favorites, source: :movie
+  has_many :movie_reviews, through: :reviews, source: :movie
   
   validates :name, presence: true
   validates :username, uniqueness: {case_sensitive: false}, 
