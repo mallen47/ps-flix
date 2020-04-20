@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  before_save :format_username, :format_email, :set_slug
+
   has_secure_password
   has_many :reviews
   has_many :favorites, dependent: :destroy
@@ -13,4 +16,21 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
                     allow_blank: true
+
+  def to_param
+    username
+  end
+
+    private
+      def format_username
+        self.username = username.downcase
+      end
+
+      def format_email
+        self.email = email.downcase
+      end
+
+      def set_slug
+        self.slug = username.parameterize
+      end
 end

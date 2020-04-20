@@ -3,13 +3,13 @@ class UsersController < ApplicationController
 	before_action :require_signin, except: [:new, :create]
 	before_action :require_correct_user, only: [:edit, :update]
 	before_action :admin_only, only: [:destroy]
+	before_action :set_username, only: [:show, :destroy]
 
 	def index
 		@users = User.all
 	end
 
-	def show
-		@user = User.find(params[:id])
+	def show		
 		@reviews = @user.reviews
 		@favorite_movies = @user.favorite_movies
 	end
@@ -40,7 +40,6 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		@user = User.find(params[:id])
 		@user.destroy
 		redirect_to movies_url, alert: "Account deleted successfully."
 	end
@@ -48,12 +47,17 @@ class UsersController < ApplicationController
 	private
 
 		def require_correct_user
-			@user = User.find(params[:id])
+			#@user = User.find(params[:id])
+			@user = set_username
 			redirect_to movies_url unless current_user?(@user)
 		end
 
 		def admin_only
 			require_admin 
+		end
+
+		def set_username
+			@user = User.find_by!(slug: params[:id])
 		end
 
 		def user_params
